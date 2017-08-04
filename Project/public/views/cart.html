@@ -1,0 +1,31 @@
+
+<h2>Cart Page</h2>
+
+<link rel="stylesheet" type="text/css" href="otherStyle.css" />
+
+<div ng-controller="cartController as cartCtrl">
+    <button ng-click="cartCtrl.getMyCart()">Show My Cart</button>
+    <span style="color: #fff578">Filter by value: <input type="text" ng-model="cartCtrl.filterBy"></span>
+
+    <table>
+        <thead>
+        <tr>
+            <th><a style="color: #ffee8e" href="" ng-click="cartCtrl.fieldToOrderBy='MovieID'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Movie ID</a></th>
+            <th><a style="color: #ffee8e" href="" ng-click="cartCtrl.fieldToOrderBy='MovieName'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Movie Name</a></th>
+            <th><a style="color: #ffee8e" href="" ng-click="cartCtrl.fieldToOrderBy='Amount'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Amount</a></th>
+            <th><a style="color: #ffee8e" href="" ng-click="cartCtrl.fieldToOrderBy='Price'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Price</a></th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="product in cartCtrl.cart | filter : cartCtrl.filterBy |
+                                                            orderBy:cartCtrl.fieldToOrderBy:cartCtrl.reverseSort">
+            <td style="color: #f8fff9" align="center">{{product.MovieID}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieName}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Amount}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Price | currency: "$"}}</td>
+
+            <td><button ng-click="cartCtrl.purchase()">Purchase</button> </td>
+
+        </tr>
+    </table>
+</div>

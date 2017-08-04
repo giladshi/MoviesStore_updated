@@ -1,0 +1,20 @@
+html, body {
+    height: 200px;
+}
+
+h1 {
+    color: #fff;
+    text-decoration: none;
+    line-height: 200%;
+}
+
+h2 {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 4%;
+    line-height: 200%;
+}
+
+.form-group {
+    color: #00bfff;
+}

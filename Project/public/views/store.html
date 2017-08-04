@@ -1,0 +1,188 @@
+<h2>Store Page</h2>
+
+
+<link rel="stylesheet" type="text/css" href="otherStyle.css"/>
+
+
+<div ng-controller="storeController as storeCtrl">
+    <button ng-click="storeCtrl.getProducts()">Get All Products</button>
+    <span style="color: #fff578">Filter by value: <input type="text" ng-model="storeCtrl.filterBy"></span>
+
+    <table>
+        <thead>
+        <tr>
+            <th id="trs">
+                <a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieID'; storeCtrl.reverseSort = !storeCtrl.reverseSort">
+                    Movie ID
+                </a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieName'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Name </a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieCategory'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Category </a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieDirector'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Director </a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Price'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Price </a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Month'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Month </a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Year'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Year </a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='AmountInStock'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Amount
+                In Stock </a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Rating'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Rating </a>
+            </th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="product in storeCtrl.products | filter : storeCtrl.filterBy |
+                                                            orderBy:storeCtrl.fieldToOrderBy:storeCtrl.reverseSort">
+            <td style="color: #f8fff9" align="center">{{product.MovieID}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieName}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieCategory}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieDirector}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Price | currency: "$"}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Month}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Year}}</td>
+            <td style="color: #f8fff9" align="center">{{product.AmountInStock}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Rating}}</td>
+
+
+            <td id="amountID">
+                <input type="number"
+                       ng-required="true"
+                       name="amountInput"
+                       placeholder="amount?"
+                       ng-model="sum_shay">
+            </td>
+
+            <td>
+                <button ng-click="storeCtrl.addCart(product.MovieID,sum_shay)">Add to Cart</button>
+            </td>
+            <td>
+                <button ng-click="storeCtrl.removeCart(product.MovieID)">Remove from Cart</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<br/>
+<br/>
+
+<div ng-controller="storeController as storeCtrl">
+    <button ng-click="storeCtrl.getTopProducts()">Get Top Products</button>
+    <span style="color: #fff578">Filter by value: <input type="text" ng-model="storeCtrl.filterBy"></span>
+
+    <table>
+        <thead>
+        <tr>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieID'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                ID</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieName'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Name</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieCategory'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Category</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieDirector'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Director</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Price'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Price</a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Month'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Month</a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Year'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Year</a>
+            </th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='AmountInStock'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Amount
+                In Stock</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='Rating'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Rating</a>
+            </th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="product in storeCtrl.topProducts | filter : storeCtrl.filterBy |
+                                                            orderBy:storeCtrl.fieldToOrderBy:storeCtrl.reverseSort">
+            <td style="color: #f8fff9" align="center">{{product.MovieID}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieName}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieCategory}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieDirector}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Price | currency: "$"}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Month}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Year}}</td>
+            <td style="color: #f8fff9" align="center">{{product.AmountInStock}}</td>
+            <td style="color: #f8fff9" align="center">{{product.Rating}}</td>
+
+        </tr>
+    </table>
+</div>
+
+<br/>
+<br/>
+
+
+<div ng-controller="storeController as storeCtrl">
+    <button ng-click="storeCtrl.getNewProducts()">Get New Products</button>
+
+    <span style="color: #fff578">Filter by value: <input type="text" ng-model="storeCtrl.filterBy"></span>
+
+    <table>
+        <thead>
+        <tr>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieID'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                ID</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieName'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Name</a></th>
+            <th><a style="color: #ffee8e" href=""
+                   ng-click="storeCtrl.fieldToOrderBy='MovieCategory'; storeCtrl.reverseSort = !storeCtrl.reverseSort">Movie
+                Category</a></th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="product in storeCtrl.newProducts | filter : storeCtrl.filterBy |
+                                                            orderBy:storeCtrl.fieldToOrderBy:storeCtrl.reverseSort">
+            <td style="color: #f8fff9" align="center">{{product.MovieID}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieName}}</td>
+            <td style="color: #f8fff9" align="center">{{product.MovieCategory}}</td>
+
+        </tr>
+    </table>
+</div>
+
+<br/>
+<br/>
+
+
+<div ng-controller="storeController as storeCtrl">
+    <button ng-click="storeCtrl.getRecommendProducts()">Get Recommended Products</button>
+
+    <span style="color: #fff578">Filter by value: <input type="text" ng-model="storeCtrl.filterBy"></span>
+
+    <table>
+        <thead>
+        <tr>
+            <th><a style="color: #fff578" href="">Movie Name</a></th>
+        </tr>
+        </thead>
+
+        <td align="center">{{storeCtrl.recommendedProducts}}</td>
+
+        </tr>
+    </table>
+</div>

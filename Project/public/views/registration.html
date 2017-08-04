@@ -1,0 +1,159 @@
+<h2>Registration Page</h2>
+
+<div class="register-container" ng-controller="registerController as regCtrl">
+    <div class="register-form">
+        <form name="regForm" ng-submit="regCtrl.register(regForm.$valid)" novalidate>
+            <div class="form-group">
+                <label>UserName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       ng-model="regCtrl.user.USERNAME"
+                       ng-required="true"
+                       class="form-control"
+                       name="usernameInput"
+                       ng-minlength="3"
+                       ng-maxlength="8"
+                       placeholder="Your UserName">
+
+                <span ng-show="regForm.usernameInput.$invalid &&
+                 (regForm.usernameInput.$error.minlength || regForm.usernameInput.$error.maxlength)
+                    && !regForm.usernameInput.$pristine" class="help-block">User Name must contain between 3 to 8
+                    characters</span>
+                <span ng-show="regForm.usernameInput.$invalid && regForm.usernameInput.$error.required" class="help-block">User Name is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>First Name:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       ng-model="regCtrl.user.FIRSTNAME"
+                       ng-required="true"
+                       class="form-control"
+                       name="firstnameInput"
+                       placeholder="First Name">
+                <span ng-show="regForm.firstnameInput.$invalid && regForm.firstnameInput.$error.required" class="help-block">First Name is required</span>
+            </div>
+            <br/>
+
+
+            <div class="form-group">
+                <label>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       ng-model="regCtrl.user.LASTNAME"
+                       ng-required="true"
+                       class="form-control"
+                       name="lastnameInput"
+                       placeholder="Last Name">
+                <span ng-show="regForm.lastnameInput.$invalid && regForm.lastnameInput.$error.required" class="help-block">Last Name is required</span>
+            </div>
+            <br/>
+
+
+            <div class="form-group">
+                <label>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="email"
+                       ng-model="regCtrl.user.EMAIL"
+                       ng-required="true"
+                       class="form-control"
+                       name="emailInput"
+                       placeholder="Your Email">
+                <span ng-show="regForm.emailInput.$dirty && regForm.emailInput.$error.email"
+                      class="help-block">Valid email is required</span>
+                <span ng-show="regForm.emailInput.$invalid && regForm.emailInput.$error.required"
+                      class="help-block">Email is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       ng-model="regCtrl.user.ADDRESS"
+                       ng-required="true"
+                       class="form-control"
+                       name="addressInput"
+                       placeholder="Your Address">
+                <span ng-show="regForm.addressInput.$invalid && regForm.addressInput.$error.required"
+                      class="help-block">Address is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>Country:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <select ng-options="country for country in regCtrl.countrylist"
+                        name="countryInput"
+                        ng-required="true"
+                        value="countries"
+                        ng-model="regCtrl.user.COUNTRY"
+                        ng-required="true">
+                    <option value="">Select country</option>
+                </select>
+
+                <span ng-show="regForm.countryInput.$invalid && regForm.countryInput.$error.required"
+                      class="help-block">Country is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>Favorite Cat.:</label>
+                <input type="text"
+                       ng-model="regCtrl.user.FAVORITECAT"
+                       ng-required="true"
+                       class="form-control"
+                       name="favoriteCatInput"
+                       placeholder="Your Favorite Categories">
+                <span ng-show="regForm.favoriteCatInput.$invalid && regForm.favoriteCatInput.$error.required"
+                      class="help-block">First Favorite Category is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="password"
+                       ng-model="regCtrl.user.PASSWORD"
+                       ng-required="true"
+                       class="form-control"
+                       name="passwordInput"
+                       ng-minlength="5"
+                       ng-maxlength="10"
+                       placeholder="Your Password">
+                <span ng-show="regForm.passwordInput.$invalid && (regForm.passwordInput.$error.minlength || regForm.passwordInput.$error.maxlength)"
+                      class="help-block">Password must contain between 5 to 10 characters</span>
+                <span ng-show="regForm.passwordInput.$invalid && regForm.passwordInput.$error.required" class="help-block">Password is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>PetName:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <input type="text"
+                       ng-model="regCtrl.user.PETSNAME"
+                       ng-required="true"
+                       class="form-control"
+                       name="petnameInput"
+                       placeholder="Your Pets Name">
+                <span ng-show="regForm.petnameInput.$invalid && regForm.petnameInput.$error.required"
+                      class="help-block">Pets Name is required</span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <label>2nd Favorite Cat.:</label>
+                <input type="text"
+                       ng-model="regCtrl.user.FAVORITECATSEC"
+                       ng-required="true"
+                       class="form-control"
+                       name="secondFavoriteCatInput"
+                       placeholder="Your Second Favorite Categories">
+                <span ng-show="regForm.secondFavoriteCatInput.$invalid && regForm.secondFavoriteCatInput.$error.required"
+                   class="help-block">Second Favorite Category is required</span>
+            </div>
+            <br/>
+
+            <input type="submit"
+                   class="btn btn-success btn-lg"
+                   value="Register"
+                   ng-disabled="regForm.$invalid">
+        </form>
+        <div>
+            {{regCtrl.errorMessage}}
+        </div>
+    </div>
+</div>

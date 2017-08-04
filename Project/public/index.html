@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <script src="angularScripts/angular.js"></script>
+    <script src="app.js"></script>
+    <script type="text/javascript" src="angularScripts/angular-route.js"></script>
+    <link rel="stylesheet" type="text/css" href="indexStyle.css"/>
+</head>
+<body>
+<header><h1>Welcome To Our Movies Store</h1></header>
+<!-- Navigator Bar !-->
+<div id="menu" class="topnav" ng-controller="mainController as mainCtrl">
+    <a href="#/">Home</a>
+    <a href="#registration" ng-hide="mainCtrl.userService.isLoggedIn">Registration</a>
+    <a href="#login" ng-hide="mainCtrl.userService.isLoggedIn">Login</a>
+    <a href="#logout" ng-show="mainCtrl.userService.isLoggedIn" ng-controller="logoutController as logoutCtrl"
+       ng-click="logoutCtrl.logout()">Logout</a>
+    <a href="#store" ng-show="mainCtrl.userService.isLoggedIn">Store</a>
+    <a href="#myCart" ng-show="mainCtrl.userService.isLoggedIn">MyCart</a>
+    <a href="#about">About</a>
+</div>
+
+<br>
+<br>
+<ng-view></ng-view>
+
+</body>
+</html> 
